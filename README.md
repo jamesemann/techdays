@@ -4,6 +4,8 @@ Accompanying code and resources for the three sessions Monday 13th September at 
 
 The links are presented in the order that they appear in the sessions.
 
+*I'll update the code and include links to the slides after Monday*
+
 ##Session Summary
 
 ### Session 1 - The Why of Bots
