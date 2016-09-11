@@ -7,6 +7,10 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using System.Net.Http.Headers;
+using System.Configuration;
 
 namespace Demo4.SentimentBot
 {
@@ -21,12 +25,27 @@ namespace Demo4.SentimentBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
+                // Create HTTP client
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", ConfigurationManager.AppSettings["CognitiveServicesTextAnalyticsKey"]);
+                string uri = "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment";
+                
+                // not sure if this helps with readibility
+                JObject sentimentRequest = JObject.FromObject(new { documents = new[] { new { id = Guid.NewGuid().ToString(), text = activity.Text } } });
+                
+                ByteArrayContent content = new ByteArrayContent(Encoding.UTF8.GetBytes(sentimentRequest.ToString()));
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                
+                // Post data to sentiment analysis endpoint
+                HttpResponseMessage r = await client.PostAsync(uri, content);
 
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                // Parse the sentiment returned as a value between 0.0 and 1.0
+                JObject sentimentResponse = JObject.Parse(await r.Content.ReadAsStringAsync());                
+                double score = double.Parse((string)sentimentResponse.SelectToken("documents[0].score"));
+
+                // Respond to user
+                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+                Activity reply = activity.CreateReply(string.Format(@"you are {0} - {1}% happiness", (score > 0.5 ? "happy" : "unhappy"), (score * 100.0)));
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else
