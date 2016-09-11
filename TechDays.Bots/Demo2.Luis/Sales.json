@@ -1,0 +1,221 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "Sales",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "Consultancy"
+    },
+    {
+      "name": "Custom Development"
+    },
+    {
+      "name": "General"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Technical Leadership"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Technology"
+    }
+  ],
+  "composites": [],
+  "bing_entities": [],
+  "actions": [
+    {
+      "actionName": "General",
+      "intentName": "General",
+      "actionParameters": [
+        {
+          "parameterName": "Technology",
+          "entityName": "Technology",
+          "required": false
+        }
+      ]
+    },
+    {
+      "actionName": "Custom Development",
+      "intentName": "Custom Development",
+      "actionParameters": [
+        {
+          "parameterName": "Technology",
+          "entityName": "Technology",
+          "required": false
+        }
+      ]
+    },
+    {
+      "actionName": "Consultancy",
+      "intentName": "Consultancy",
+      "actionParameters": [
+        {
+          "parameterName": "Technology",
+          "entityName": "Technology",
+          "required": false
+        }
+      ]
+    },
+    {
+      "actionName": "Technical Leadership",
+      "intentName": "Technical Leadership",
+      "actionParameters": [
+        {
+          "parameterName": "Technology",
+          "entityName": "Technology",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "i'd like to enquire about technical leadership",
+      "intent": "Technical Leadership",
+      "entities": []
+    },
+    {
+      "text": "i need some technical leadership asap for our new on-premise sharepoint implementation, i expect it will require 20-30 days over a period of 3 months",
+      "intent": "Technical Leadership",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 12,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "i'd like some consultancy please",
+      "intent": "Consultancy",
+      "entities": []
+    },
+    {
+      "text": "i've been asked to implement an esb and i'm getting in contact to see if you can help",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "we have a new azure project and need some help architecting and implementing it",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "can you tell me how i can get guidance for installing biztalk?",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 11,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "please can you give me a quote for an azure healthcheck?",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 9,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "i'd like an app developing",
+      "intent": "Custom Development",
+      "entities": []
+    },
+    {
+      "text": "i'd like to know how we can engage with your company for some biztalk resource",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 15,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "i need a development team to help with a large azure project",
+      "intent": "Custom Development",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 10,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "i need a uwp app developing in a short timeframe, can you help?",
+      "intent": "Custom Development",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i'd like some information about the company",
+      "intent": "General",
+      "entities": []
+    },
+    {
+      "text": "can you tell me more about the azure services you offer?",
+      "intent": "General",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "i need some help implementing azure",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "can you help me with azure?",
+      "intent": "Consultancy",
+      "entities": [
+        {
+          "entity": "Technology",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    }
+  ]
+}
